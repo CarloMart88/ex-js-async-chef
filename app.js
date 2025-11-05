@@ -14,22 +14,26 @@ async function getData(url) {
   
 }
 
-//procedo a creare funzione getChefBirthday(id)
+//creo la funzione asincrona getChefBirthday a cui passo l'id 
 
 async function getChefBirthday(id) {
-  const recipes = getData(`https://dummyjson.com/recipes/${id}`)
+  const recipes = await getData(`https://dummyjson.com/recipes/${id}`)
   //con recipes prendo la ricetta con l'id che passerò
-  const chef = getData(`https://dummyjson.com/users/${userId}`)
+  const chef =  await getData(`https://dummyjson.com/users/${recipes.userId}`)
   //una volta che ho ottenuto l'id dello user in recipes potrò fare la chiamata users
-  return {...recipes , chef}
-  //creo l'oggetto con entrambe le proprietà
+  return chef.birthDate
+  //ritorno a questo punto solo la chiave birthDate perchè non ho bisogno di tutto l'oggetto
 }
 
-//prodo ad effettuare le chiamate per vedere il risultato ottenuto 
+//provo ad effettuare le chiamate per vedere il risultato ottenuto 
 
 (async()=>{
+  //metodo try per testare la chiamata ed eventuali errori 
+  try{
   const result = await getChefBirthday(1)
-  console.log("la data di nascita dello chef è ", result)
-
-
+  console.log(`il compleanno dello chef è: ${dayjs(result)}`)
+  }catch(error){
+    console.error(error)
+    
+  }// non ho aggiunto un finally perchè non penso avesse molto senso farlo 
 })()

@@ -31,7 +31,7 @@ async function getChefBirthday(id) {
   //metodo try per testare la chiamata ed eventuali errori 
   try{
   const result = await getChefBirthday(1)
-  console.log(`il compleanno dello chef è: ${dayjs(result)}`)
+  console.log(`il compleanno dello chef è: ${dayjs(result).format('DD/MM/YYYY')}`)
   }catch(error){
     console.error(error)
     

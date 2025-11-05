@@ -1,4 +1,3 @@
-console.log("hello world")
 
 /* url degli endpoint 
 https://dummyjson.com/recipes/{id} per la ricetta
@@ -25,3 +24,12 @@ async function getChefBirthday(id) {
   return {...recipes , chef}
   //creo l'oggetto con entrambe le proprietà
 }
+
+//prodo ad effettuare le chiamate per vedere il risultato ottenuto 
+
+(async()=>{
+  const result = await getChefBirthday(1)
+  console.log("la data di nascita dello chef è ", result)
+
+
+})()
